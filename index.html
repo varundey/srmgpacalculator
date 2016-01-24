@@ -1,0 +1,67 @@
+<head>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<script type="text/javascript" src= 'js/jquery.js'></script>
+<script type="text/javascript" src="js/calculation.js"></script>
+</head>
+
+<body>
+
+
+<table class="table table-striped table-bordered table-condensed tab_logic gpa" id="gpa">
+    <thead>
+        <tr class="headings">
+            <td class="heading">Credits</td>
+            <td class="heading">Grade</td>
+            <td class="heading">Total</td>
+        </tr>
+        <tr class="grand-total">
+            <td class="credit-total"></td>
+            <td class="grade-total"></td>
+            <td class="table-total"></td>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr class="grand-total persist">
+            <td>Combined Totals</td>
+            <td></td>
+            <td id="table-grand-total"></td>
+        </tr>
+    </tfoot>
+    <tbody>
+        <tr id='addr1' class="calculation visible">
+            
+            <td class="credit">
+                <input type="text" class="credit form-control input-md" value="" tabindex="1" />
+            </td>
+            <td class="grade">
+                <input type="text" class="grade form-control input-md" type="text" value="" tabindex="2" />
+            </td>
+            <td class="row-total">
+                <input type="text" class="row-total form-control" value="" readonly />
+            </td>
+        </tr>
+        <tr class="calculation visible">
+            
+            <td class="credit">
+                <input type="text" class="credit form-control input-md" value="" tabindex="3" />
+            </td>
+            <td class="grade">
+                <input type="text" class="grade form-control input-md" value="" tabindex="4" />
+            </td>
+            <td class="row-total">
+                <input type="text" class="row-total form-control" value="" readonly />
+            </td>
+        </tr>
+        <tr id='addr2' class="calculation visible">
+    </tbody>
+</table>
+<div><a id="add_row" class="btn btn-default pull-left"><span class="glyphicon glyphicon-plus-sign"></span>  Add Row</a>
+
+</div>
+<div><a href="#" id='delete_row' class="pull-right btn btn-default"><span class="glyphicon glyphicon-minus-sign"></span>  Delete Row</a>
+
+</div>
+</tr>
+</tbody>
+</table>
+</body>
