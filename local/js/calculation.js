@@ -41,6 +41,8 @@ console.log(numRows);
         if (numRows > 1) {
             $("#gpatable").find("tr").last().remove();
             numRows--;
+            
+            recalc();
         }
 console.log(numRows);
     }
