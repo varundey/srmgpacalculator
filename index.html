@@ -15,7 +15,7 @@
 		<!-- Latest compiled and minified bootstrap CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-<!--> Google analytics begins <-->
+<!-- Google analytics begins -->
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -27,7 +27,7 @@
 
 </script>
 
-<!-->Google analytics ends<-->
+<!--Google analytics ends-->
 
 		<title>
 			SRM GPA Calculator by Varun Dey
@@ -71,8 +71,8 @@
 					<td id="table-grand-total"></td>
 				</tr>
 			</tfoot>
-			<tbody>
-				<tr class="calculation visible" id='addr1'>
+			<tbody id='gpatable'>
+				<tr class="calculation visible" >
 					<td>
 						1
 					</td>
@@ -80,7 +80,7 @@
 						<input class="input-md form-control" tabindex="1" type="text">
 					</td>
 					<td class="credit">
-						<input class="credit form-control input-md" tabindex="2"  type="text" onkeyup="checkInput(this)">
+						<input class="credit form-control input-md" tabindex="2"  type="text">
 					</td>
 					<td class="grade">
 						<input class="grade form-control input-md" tabindex="3" type="text">
@@ -89,8 +89,77 @@
 						<input class="row-total form-control" tabindex="-1" readonly type="text">
 					</td>
 				</tr>
-				<tr class="calculation visible" id="addr2">
-					
+
+				<tr class="calculation visible" >
+					<td>
+						2
+					</td>
+					<td>
+						<input class="input-md form-control" tabindex="4" type="text">
+					</td>
+					<td class="credit">
+						<input class="credit form-control input-md" tabindex="5"  type="text" >
+					</td>
+					<td class="grade">
+						<input class="grade form-control input-md" tabindex="6" type="text">
+					</td>
+					<td class="row-total">
+						<input class="row-total form-control" tabindex="-1" readonly type="text">
+					</td>
+				</tr>
+
+				<tr class="calculation visible" >
+					<td>
+						3
+					</td>
+					<td>
+						<input class="input-md form-control" tabindex="7" type="text">
+					</td>
+					<td class="credit">
+						<input class="credit form-control input-md" tabindex="8"  type="text">
+					</td>
+					<td class="grade">
+						<input class="grade form-control input-md" tabindex="9" type="text">
+					</td>
+					<td class="row-total">
+						<input class="row-total form-control" tabindex="-1" readonly type="text">
+					</td>
+				</tr>
+
+				<tr class="calculation visible" >
+					<td>
+						4
+					</td>
+					<td>
+						<input class="input-md form-control" tabindex="10" type="text">
+					</td>
+					<td class="credit">
+						<input class="credit form-control input-md" tabindex="11"  type="text" >
+					</td>
+					<td class="grade">
+						<input class="grade form-control input-md" tabindex="12" type="text">
+					</td>
+					<td class="row-total">
+						<input class="row-total form-control" tabindex="-1" readonly type="text">
+					</td>
+				</tr>
+
+				<tr class="calculation visible" >
+					<td>
+						5
+					</td>
+					<td>
+						<input class="input-md form-control" tabindex="13" type="text">
+					</td>
+					<td class="credit">
+						<input class="credit form-control input-md" tabindex="14"  type="text" >
+					</td>
+					<td class="grade">
+						<input class="grade form-control input-md" tabindex="15" type="text">
+					</td>
+					<td class="row-total">
+						<input class="row-total form-control" tabindex="-1" readonly type="text">
+					</td>
 				</tr>
 			</tbody>
 		</table>

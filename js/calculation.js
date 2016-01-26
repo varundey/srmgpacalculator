@@ -1,4 +1,5 @@
-    var numRows = 1, ti = 3;
+$(document).ready(function(){ 
+    var numRows = 5, ti = 15;
 
     function isNumber(n) {
         return !isNaN(parseFloat(n)) && isFinite(n);
@@ -26,23 +27,19 @@
     }
 
     function addRow() {
-        $('#addr' + (numRows+1)).html("<td>" + (numRows+1) +
-            "</td> <td><input type='text' tabindex='" + (ti++) +
-            "' class='input-md form-control'/></td> <td class='credit'><input type='text' class='credit form-control input-md' tabindex='" +
-            (ti++) +
-            "'/></td> <td class='grade'><input type='text' class='grade form-control input-md' tabindex='" +
-            (ti++) +
-            "'/></td> <td class='row-total'><input type='text' class='row-total form-control' tabindex='-1' readonly /></td>"
-        );
+        var dom = $("<tr class='calculation visible' ><td>"
+                        +(numRows+1)+
+                    "</td><td><input class='input-md form-control' tabindex="+(ti++)+" type='text'></td><td class='credit'><input class='credit form-control input-md' tabindex="+
+                    (ti++)+" type='text'></td><td class='grade'><input class='grade form-control input-md' tabindex="+
+                    (ti++)+" type='text'></td><td class='row-total'><input class='row-total form-control' tabindex='-1' readonly type='text'></td></tr>");
+        $('#gpatable').append(dom);
         numRows++;
-        $('#gpa tr:last').after('<tr id="addr' + (numRows+1) +
-            '" class="calculation visible"></tr>');
 console.log(numRows);
         
     }
     function delRow() {
         if (numRows > 1) {
-            $("#addr" + (numRows)).remove();
+            $("#gpatable").find("tr").last().remove();
             numRows--;
         }
 console.log(numRows);
@@ -54,6 +51,8 @@ console.log(numRows);
         $("#add_row").on("click", function() { addRow() });
         $("#delete_row").on("click", function() { delRow() } );
     });
+
+
 
     function calculateRow() {
         $('.grade').keyup(function() {
@@ -70,9 +69,14 @@ console.log(numRows);
         });
     }
 
-    function checkInput(ob) {
-  var invalidChars = /[^0-9]/gi
-  if(invalidChars.test(ob.value)) {
-            ob.value = ob.value.replace(invalidChars,"");
-      }
-}
+     $("#gpatable").on("keyup",".credit",function(){
+        var val=$(this).val();
+                var invalidChars = /[^0-9]/gi
+        
+                  if(invalidChars.test(val)) {
+                            val= val.replace(invalidChars,"");
+                            $(this).val(val);
+                      }
+    });
+})
+   
