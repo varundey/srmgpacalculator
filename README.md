@@ -6,7 +6,7 @@ Well with this repository, you can type in your grades and credit for the subjec
 
 ### Getting started
 ----
-1. Head over to http://varundey.github.io/srmpgacalculator
+1. Head over to http://varundey.github.io/srmgpacalculator
 2. Type in your subject or subject code or just use abbreviation
 3. Input total credit of that subject
 4. Input your final grade for that subject
