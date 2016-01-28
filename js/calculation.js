@@ -14,8 +14,8 @@ $(document).ready(function(){
             if (w == "A" || w == 'a' || w == '9') { w = 9; }
             if (w == "B" || w == 'b' || w == '8') { w = 8; }
             if (w == "C" || w == 'c' || w == '7') { w = 7; }
-            if (w == "D" || w == 'd' || w == '5') { w = 6; }
-            else{ w=0; }
+            if (w == "D" || w == 'd' || w == '5') { w = 5; }   
+            if (w == "U" || w == 'u' || w == 'I'|| w == 'i'|| w == 'W'|| w == 'w') { w = 0; }   
             var mult = (l * w);
             $(this).find('input.row-total').val(mult ? mult : "");
             gr += isNumber(w) ? parseInt(w, 10) : 0;
