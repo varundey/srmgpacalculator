@@ -23,6 +23,7 @@ $(document).ready(function(){
             		tt += isNumber(mult) ? mult : 0;
         	}); //END .each
         	$("#credit-grand-total").html("Total Credits: "+cr);
+            $("#grade-grand-total").html("Total Grades: "+tt);
         	$("#table-grand-total").html("GPA: "+(tt/cr).toFixed(3));
     	}
 
