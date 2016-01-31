@@ -1,4 +1,7 @@
 $(document).ready(function(){ 
+
+    	$(".button-collapse").sideNav();
+        	
 	var numRows = 5, ti = 15;
 
     	function isNumber(n) {
@@ -14,8 +17,7 @@ $(document).ready(function(){
             		if (w == "A" || w == 'a' || w == '9') { w = 9; }
             		if (w == "B" || w == 'b' || w == '8') { w = 8; }
             		if (w == "C" || w == 'c' || w == '7') { w = 7; }
-            		if (w == "D" || w == 'd' || w == '5') { w = 5; }   
-            if (w == "U" || w == 'u' || w == 'I'|| w == 'i'|| w == 'W'|| w == 'w') { w = 0; } 
+            		if (w == "D" || w == 'd' || w == '6') { w = 6; }
             		var mult = (l * w);
             		$(this).find('input.row-total').val(mult ? mult : "");
             		gr += isNumber(w) ? parseInt(w, 10) : 0;
@@ -23,14 +25,12 @@ $(document).ready(function(){
             		tt += isNumber(mult) ? mult : 0;
         	}); //END .each
         	$("#credit-grand-total").html("Total Credits: "+cr);
-            $("#grade-grand-total").html("Total Grades: "+tt);
         	$("#table-grand-total").html("GPA: "+(tt/cr).toFixed(3));
     	}
 
     	function addRow() {
-        	var dom = $("<tr class='calculation visible'><td class='mdl-data-table__cell--non-numeric' style='text-align:center;vertical-align:middle;font-family:Roboto;font-weight:500;font-size:15px;display:table-cell;'>"+(numRows+1)+"</td><td><div class='mdl-textfield mdl-js-textfield' style='display:table-cell;'><input class='mdl-textfield__input' style='text-align:center;' type='text' tabIndex="+(ti++)+" id='sub"+(numRows+1)+"Code'><label class='mdl-textfield__label' style='text-align:center;' for='sub"+(numRows+1)+"Code'>Subject "+(numRows+1)+" Code</label></div></td><td><div class='credit mdl-textfield mdl-js-textfield' style='display:table-cell;'><input class='credit mdl-textfield__input' style='text-align:center;' type='text' tabIndex="+(ti++)+" id='sub"+(numRows+1)+"Credits'><label class='mdl-textfield__label' style='text-align:center;' for='sub"+(numRows+1)+"Credits'>Subject "+(numRows+1)+" Credits</label></div></td><td><div class='grade mdl-textfield mdl-js-textfield' style='display:table-cell;'><input class='grade mdl-textfield__input' style='text-align:center;' type='text' tabIndex="+(ti++)+" id='sub"+(numRows+1)+"Grade'><label class='mdl-textfield__label' style='text-align:center;' for='sub"+(numRows+1)+"Grade'>Subject "+(numRows+1)+" Grade</label></div></td><td><div class='row-total mdl-textfield mdl-js-textfield' style='display:table-cell;'><input class='row-total mdl-textfield__input' style='text-align:center;' type='text' tabIndex='-1' readOnly id='subTotal'></div></td></tr>");
+        	var dom = $("<tr class='calculation visible'><td>"+(numRows+1)+"</td><td><div class='row'><div class='input-field col s12'><input type='text' id='"+(numRows+1)+"Code' tabIndex='"+(ti++)+"'><label for='"+(numRows+1)+"Code'>Code</label></div></div></td><td><div class='row'><div class='credit input-field col s12'><input class='credit' type='text' tabIndex='"+(ti++)+"' id='"+(numRows+1)+"Credits'><label for='"+(numRows+1)+"Credits'>Credits</label></div></div></td><td><div class='row'><div class='grade input-field col s12'><input class='grade' type='text' tabIndex='"+(ti++)+"' id='"+(numRows+1)+"Grade'><label for='"+(numRows+1)+"Grade'>Grade</label></div></div></td><td><div class='row'><div class='row-total input-field col s12'><input class='row-total' type='text' readonly tabIndex='-1'></div></div></td></tr>");
         	$('#gpatable').append(dom);
-		componentHandler.upgradeDom();
         	numRows++;
 		console.log(numRows);
     	}
@@ -38,7 +38,6 @@ $(document).ready(function(){
     	function delRow() {
         	if (numRows > 1) {
         		$("#gpatable").find("tr").last().remove();
-			componentHandler.upgradeDom();
 	        	numRows--;
             		recalc();
         	}
@@ -46,7 +45,7 @@ $(document).ready(function(){
     	}
 
     	$(function() {
-        	$("#gpa").on("keyup", ".calculation", recalc);
+        	$("#gpa").on("click", ".calculation", recalc);
         	$("#gpa").on("keyup blur", ".form-control", recalc);
         	$("#gpa").on("keyup", ".grade:last", function() { addRow(); } );
         	$("#add_row").on("click", function() { addRow() });

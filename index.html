@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 		<!--[if lt IE 9]>
 		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.ie.min.css" />
 		<![endif]-->
@@ -8,284 +9,254 @@
 		<meta content="IE=edge" http-equiv="X-UA-Compatible">
 		<meta content="width=device-width, initial-scale=1" name="viewport">
 		<meta content="CGPA calculator designed in accordance with SRM University. This will help you in calculating your total CGPA based on your final grade of the subect and the number of credits of that subject." name="description">
+		<script src="js/calculation.js" type="text/javascript"></script>
+		<!-- uncomment this to run locally with no connection
+		<script src="local/js/bootstrap.min.js"></script>
+		<script src='local/js/jquery.js' type="text/javascript"></script>
+		<link href="local/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+		-->
+			
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      		<script type="text/javascript" src="js/materialize.js"></script>
+		<link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/> 
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+		<!-- Google analytics begins -->
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	  		ga('create', 'UA-72866316-1', 'auto');
+	  		ga('send', 'pageview');
+		</script>
+		<!--Google analytics ends-->
+	
 		<title>SRM GPA Calculator by Varun Dey</title>
 	</head>
-	<body>
-		<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-			<header class="mdl-layout__header">
-				<div class="mdl-layout__header-row">
-					<span class="mdl-layout-title">SRM GPA CALCULATOR</span>
-					<div class="mdl-layout-spacer"></div>
-					<nav class="mdl-navigation mdl-layout--large-screen-only">
-        					<a class="mdl-navigation__link" href="https://github.com/varundey/srmgpacalculator/fork" id="forkRepo">
-							<label class="mdl-button mdl-js-button mdl-button--icon" for="forkRepo" id="forkIcon">
-								<i class="material-icons">call_split</i>
-							</label>
-							<span class="mdl-tooltip mdl-tooltip--large" for="forkIcon"><b>Fork Me</b></span>
-						</a>
-       						<a class="mdl-navigation__link" href="https://github.com/varundey/srmgpacalculator" id="visitRepo">
-							<label class="mdl-button mdl-js-button mdl-button--icon" for="visitRepo" id="visitIcon">
-								<i class="material-icons">star</i>
-							</label>
-							<span class="mdl-tooltip mdl-tooltip--large" for="visitIcon"><b>Visit Repo</b></span>
-						</a>
-						<a class="mdl-navigation__link" href="https://github.com/varundey/srmgpacalculator/archive/gh-pages.zip" id="downloadRepo">
-							<label class="mdl-button mdl-js-button mdl-button--icon" for="downloadRepo" id="downloadIcon">
-								<i class="material-icons">cloud_download</i>
-							</label>
-							<span class="mdl-tooltip mdl-tooltip--large" for="downloadIcon"><b>Download Repo</b></span>
-						</a>
-      					</nav>
-				</div>
-			</header>
-			<div class="mdl-layout__drawer">
-				<nav class="mdl-navigation">
-        				<a class="mdl-navigation__link" href="https://github.com/varundey/srmgpacalculator/fork" id="forkRepo">
-						<label class="mdl-button mdl-js-button mdl-button--icon" for="forkRepo" id="forkIcon">
-							<i class="material-icons">call_split</i>
-						</label>
-						Fork Me
-					</a>
-       					<a class="mdl-navigation__link" href="https://github.com/varundey/srmgpacalculator" id="visitRepo">
-						<label class="mdl-button mdl-js-button mdl-button--icon" for="visitRepo" id="visitIcon">
-							<i class="material-icons">star</i>
-						</label>
-						Visit Repo
-					</a>
-					<a class="mdl-navigation__link" href="https://github.com/varundey/srmgpacalculator/archive/gh-pages.zip" id="downloadRepo">
-						<label class="mdl-button mdl-js-button mdl-button--icon" for="downloadRepo" id="downloadIcon">
-							<i class="material-icons">cloud_download</i>
-						</label>
-						Download Repo
-					</a>
-      				</nav>	
-			</div>
-			<main class="mdl-layout__content">
-				<div class="page-content">
-					<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="margin:0 auto;table-layout:fixed;width:90%;display:table;border-collapse:collapse;margin-top:50px;" id="gpa">
-						<thead>
-							<tr>
-								<th class="mdl-data-table__cell--non-numeric" style="text-align:center;display:table-cell;font-family:Roboto;font-weight:500;font-size:2.3vmin;">
-									Number
-								</th>
-								<th class="mdl-data-table__cell--non-numeric" style="text-align:center;display:table-cell;font-family:Roboto;font-weight:500;font-size:2.3vmin;">
-									Subject Code
-								</th>
-								<th class="mdl-data-table__cell--non-numeric" style="text-align:center;display:table-cell;font-family:Roboto;font-weight:500;font-size:2.3vmin;">
-									Credits
-								</th>
-								<th class="mdl-data-table__cell--non-numeric" style="text-align:center;display:table-cell;font-family:Roboto;font-weight:500;font-size:2.3vmin;">
-									Grade
-								</th>
-								<th class="mdl-data-table__cell--non-numeric" style="text-align:center;display:table-cell;font-family:Roboto;font-weight:500;font-size:2.3vmin;">
-									Total
-								</th>
-							</tr>
-						</thead>
-						<tfoot>
-							<tr>
-								<td class="mdl-data-table__cell--non-numeric" id="table-grand-total" style="font-family:Roboto;font-weight:500;font-size:3vmin;display:table-cell;color:rgba(0,0,0,.54);"></td>
-								<td class="mdl-data-table__cell--non-numeric" id="credit-grand-total" style="font-family:Roboto;font-weight:500;font-size:3vmin;display:table-cell;color:rgba(0,0,0,.54);"></td>
-								<td class="mdl-data-table__cell--non-numeric" id="grade-grand-total" style="font-family:Roboto;font-weight:500;font-size:3vmin;display:table-cell;color:rgba(0,0,0,.54);"></td>
-							</tr>
-						</tfoot>
-						<tbody id='gpatable'>
-							<tr class="calculation visible">
-								<td class="mdl-data-table__cell--non-numeric" style="text-align:center;vertical-align:middle;font-family:Roboto;font-weight:500;font-size:15px;display:table-cell;">
-									1
-								</td>
-								<td>
-									<div class="mdl-textfield mdl-js-textfield" style="display:table-cell;">
-										<input class="mdl-textfield__input" style="text-align:center;" type="text" tabIndex="1" id="sub1Code">
-										<label class="mdl-textfield__label" style="text-align:center;" for="sub1Code">Subject 1 Code</label>
-									</div>
-								</td>
-								<td>
-									<div class="credit mdl-textfield mdl-js-textfield" style="display:table-cell;">
-										<input class="credit mdl-textfield__input" style="text-align:center;" type="text" tabIndex="2" id="sub1Credits">
-										<label class="mdl-textfield__label" style="text-align:center;" for="sub1Credits">Subject 1 Credits</label>
-									</div>
-								</td>
-								<td>
-									<div class="grade mdl-textfield mdl-js-textfield" style="display:table-cell;">
-										<input class="grade mdl-textfield__input" style="text-align:center;" type="text" tabIndex="3" id="sub1Grade">
-										<label class="mdl-textfield__label" style="text-align:center;" for="sub1Grade">Subject 1 Grade</label>
-									</div>
-								</td>
-								<td>
-									<div class="row-total mdl-textfield mdl-js-textfield" style="display:table-cell;">
-										<input class="row-total mdl-textfield__input" style="text-align:center;" type="text" tabIndex="-1" readOnly id="subTotal">
-									</div>
-								</td>
-							</tr>
-							<tr class="calculation visible">
-								<td class="mdl-data-table__cell--non-numeric" style="text-align:center;vertical-align:middle;font-family:Roboto;font-weight:500;font-size:15px;display:table-cell;">
-									2
-								</td>
-								<td>
-									<div class="mdl-textfield mdl-js-textfield" style="display:table-cell;">
-										<input class="mdl-textfield__input" style="text-align:center;" type="text" tabIndex="4" id="sub2Code">
-										<label class="mdl-textfield__label" style="text-align:center;" for="sub2Code">Subject 2 Code</label>
-									</div>
-								</td>
-								<td>
-									<div class="credit mdl-textfield mdl-js-textfield" style="display:table-cell;">
-										<input class="credit mdl-textfield__input" style="text-align:center;" type="text" tabIndex="5" id="sub2Credits">
-										<label class="mdl-textfield__label" style="text-align:center;" for="sub2Credits">Subject 2 Credits</label>
-									</div>
-								</td>
-								<td>
-									<div class="grade mdl-textfield mdl-js-textfield" style="display:table-cell;">
-										<input class="grade mdl-textfield__input" style="text-align:center;" type="text" tabIndex="6" id="sub2Grade">
-										<label class="mdl-textfield__label" style="text-align:center;" for="sub2Grade">Subject 2 Grade</label>
-									</div>
-								</td>
-								<td>
-									<div class="row-total mdl-textfield mdl-js-textfield" style="display:table-cell;">
-										<input class="row-total mdl-textfield__input" style="text-align:center;" type="text" tabIndex="-1" readOnly id="subTotal">
-									</div>
-								</td>
-							</tr>
-							<tr class="calculation visible">
-								<td class="mdl-data-table__cell--non-numeric" style="text-align:center;vertical-align:middle;font-family:Roboto;font-weight:500;font-size:15px;display:table-cell;">
-									3
-								</td>
-								<td>
-									<div class="mdl-textfield mdl-js-textfield" style="display:table-cell;">
-										<input class="mdl-textfield__input" style="text-align:center;" type="text" tabIndex="7" id="sub3Code">
-										<label class="mdl-textfield__label" style="text-align:center;" for="sub3Code">Subject 3 Code</label>
-									</div>
-								</td>
-								<td>
-									<div class="credit mdl-textfield mdl-js-textfield" style="display:table-cell;">
-										<input class="credit mdl-textfield__input" style="text-align:center;" type="text" tabIndex="8" id="sub3Credits">
-										<label class="mdl-textfield__label" style="text-align:center;" for="sub3Credits">Subject 3 Credits</label>
-									</div>
-								</td>
-								<td>
-									<div class="grade mdl-textfield mdl-js-textfield" style="display:table-cell;">
-										<input class="grade mdl-textfield__input" style="text-align:center;" type="text" tabIndex="9" id="sub3Grade">
-										<label class="mdl-textfield__label" style="text-align:center;" for="sub3Grade">Subject 3 Grade</label>
-									</div>
-								</td>
-								<td>
-									<div class="row-total mdl-textfield mdl-js-textfield" style="display:table-cell;">
-										<input class="row-total mdl-textfield__input" style="text-align:center;" type="text" tabIndex="-1" readOnly id="subTotal">
-									</div>
-								</td>
-							</tr>
-							<tr class="calculation visible">
-								<td class="mdl-data-table__cell--non-numeric" style="text-align:center;vertical-align:middle;font-family:Roboto;font-weight:500;font-size:15px;display:table-cell;">
-									4
-								</td>
-								<td>
-									<div class="mdl-textfield mdl-js-textfield" style="display:table-cell;">
-										<input class="mdl-textfield__input" style="text-align:center;" type="text" tabIndex="10" id="sub4Code">
-										<label class="mdl-textfield__label" style="text-align:center;" for="sub4Code">Subject 4 Code</label>
-									</div>
-								</td>
-								<td>
-									<div class="credit mdl-textfield mdl-js-textfield" style="display:table-cell;">
-										<input class="credit mdl-textfield__input" style="text-align:center;" type="text" tabIndex="11" id="sub4Credits">
-										<label class="mdl-textfield__label" style="text-align:center;" for="sub4Credits">Subject 4 Credits</label>
-									</div>
-								</td>
-								<td>
-									<div class="grade mdl-textfield mdl-js-textfield" style="display:table-cell;">
-										<input class="grade mdl-textfield__input" style="text-align:center;" type="text" tabIndex="12" id="sub4Grade">
-										<label class="mdl-textfield__label" style="text-align:center;" for="sub4Grade">Subject 4 Grade</label>
-									</div>
-								</td>
-								<td>
-									<div class="row-total mdl-textfield mdl-js-textfield" style="display:table-cell;">
-										<input class="row-total mdl-textfield__input" style="text-align:center;" type="text" tabIndex="-1" readOnly id="subTotal">
-									</div>
-								</td>
-							</tr>
-							<tr class="calculation visible">
-								<td class="mdl-data-table__cell--non-numeric" style="text-align:center;vertical-align:middle;font-family:Roboto;font-weight:500;font-size:15px;display:table-cell;">
-									5
-								</td>
-								<td>
-									<div class="mdl-textfield mdl-js-textfield" style="display:table-cell;">
-										<input class="mdl-textfield__input" style="text-align:center;" type="text" tabIndex="13" id="sub5Code">
-										<label class="mdl-textfield__label" style="text-align:center;" for="sub5Code">Subject 5 Code</label>
-									</div>
-								</td>
-								<td>
-									<div class="credit mdl-textfield mdl-js-textfield" style="display:table-cell;">
-										<input class="credit mdl-textfield__input" style="text-align:center;" type="text" tabIndex="14" id="sub5Credits">
-										<label class="mdl-textfield__label" style="text-align:center;" for="sub5Credits">Subject 5 Credits</label>
-									</div>
-								</td>
-								<td>
-									<div class="grade mdl-textfield mdl-js-textfield" style="display:table-cell;">
-										<input class="grade mdl-textfield__input" style="text-align:center;" type="text" tabIndex="15" id="sub5Grade">
-										<label class="mdl-textfield__label" style="text-align:center;" for="sub5Grade">Subject 5 Grade</label>
-									</div>
-								</td>
-								<td>
-									<div class="row-total mdl-textfield mdl-js-textfield" style="display:table-cell;">
-										<input class="row-total mdl-textfield__input" style="text-align:center;" type="text" tabIndex="-1" readOnly id="subTotal">
-									</div>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-					
-					<div style="margin:0 auto;table-layout:fixed;width:90%;display:table;border-collapse:collapse;">		
-						<div id="addRows" style="margin:30px;float:right;margin-bottom:100px">
-							<button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" id="add_row">
-				  				<i class="material-icons">add</i>
-							</button>
-							<span class="mdl-tooltip mdl-tooltip--large" for="addRows"><b>Add Row</b></span>
-						</div>
 
-						<div id="deleteRows" style="margin:30px;float:right;margin-bottom:100px;">
-							<button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" id="delete_row">
-								<i class="material-icons">remove</i>
-							</button>
-							<span class="mdl-tooltip mdl-tooltip--large" for="deleteRows"><b>Delete Row</b></span>
+	<body>
+		<div class="navbar-fixed">
+			<nav>
+				<div class="nav-wrapper blue darken-2 z-depth-2">
+					<a href="#!" class="brand-logo" style="margin-left:30px">SRM GPA Calculator</a>
+					<a href="#" data-activates="mobile" class="button-collapse" style="margin-left:20px"><i class="material-icons">menu</i></a>
+					<ul class="right hide-on-med-and-down">
+						<li><a href="https://github.com/varundey/srmgpacalculator/fork" target="_blank" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Fork Repo"><i class="material-icons">call_split</i></a></li>
+						<li><a href="https://github.com/varundey/srmgpacalculator" target="_blank" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Visit Repo"><i class="material-icons">star</i></a></li>
+						<li><a href="https://github.com/varundey/srmgpacalculator/archive/gh-pages.zip" target="_blank" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Download Repo"><i class="material-icons">cloud_download</i></a></li>
+					</ul>	
+					<ul class="side-nav" id="mobile">
+						<a href="https://github.com/varundey/srmgpacalculator/fork" target="_blank"><i class="material-icons left">call_split</i>Fork Repo</a>
+						<a href="https://github.com/varundey/srmgpacalculator/" target="_blank"><i class="material-icons left">star</i>Visit Repo</a>
+						<a href="https://github.com/varundey/srmgpacalculator/archive/gh-pages.zip" target="_blank"><i class="material-icons left">cloud_download</i>Download Repo</a>
+					</ul>
+				</div>
+			</nav>
+		</div>
+
+		<table class="bordered highlight centered z-depth-1" style="margin:0 auto;table-layout:fixed;width:90%;display:table;border-collapse:collapse;margin-top:50px;" id="gpa">
+			<thead>
+				<tr>
+					<th data-field="number">Number</th>
+					<th data-field="sub_code">Subject Code</th>
+					<th data-field="credits">Credits</th>
+					<th data-field="grade">Grade</th>
+					<th data-field="total">Total</th>
+				</tr>
+			</thead>
+			<tfoot>
+				<tr>
+					<td id="table-grand-total" data-field="total_gpa"></td>
+					<td id="credit-grand-total" data-field="total_credits"></td>
+				</tr>
+			</tfoot>
+			<tbody id='gpatable'>
+				<tr class="calculation visible">
+					<td>1</td>
+					<td>
+						<div class="row">
+        						<div class="input-field col s12">
+          							<input type="text" id="1Code" tabIndex="1">
+          							<label for="1Code">Code</label>
+							</div>
+					      	</div>
+					</td>
+					<td>
+						<div class="row">
+							<div class="credit input-field col s12">
+								<input class="credit" type="text" tabIndex="2" id="1Credits">
+								<label for="1Credits">Credits</label>
+							</div>
+						</div>
+					</td>
+					<td>
+						<div class="row">
+							<div class="grade input-field col s12">
+								<input class="grade" type="text" tabIndex="3" id="1Grade">
+								<label for="1Grade">Grade</label>
+							</div>
+						</div>
+					</td>
+					<td>
+						<div class="row">
+							<div class="row-total input-field col s12">
+								<input class="row-total" type="text" readonly tabIndex="-1">
 						</div>
 					</div>
-				</div>
-			</main>
-		</div>
+					</td>
+				</tr>
+				<tr class="calculation visible">
+					<td>2</td>
+					<td>
+						<div class="row">
+        						<div class="input-field col s12">
+          							<input type="text" id="2Code" tabIndex="4">
+          							<label for="2Code">Code</label>
+							</div>
+					      	</div>
+					</td>
+					<td>
+						<div class="row">
+							<div class="credit input-field col s12">
+								<input class="credit" type="text" tabIndex="5" id="2Credits">
+								<label for="2Credits">Credits</label>
+							</div>
+						</div>
+					</td>
+					<td>
+						<div class="row">
+							<div class="grade input-field col s12">
+								<input class="grade" type="text" tabIndex="6" id="2Grade">
+								<label for="2Grade">Grade</label>
+							</div>
+						</div>
+					</td>
+					<td>
+						<div class="row">
+							<div class="row-total input-field col s12">
+								<input class="row-total" type="text" readonly tabIndex="-1">
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr class="calculation visible">
+					<td>3</td>
+					<td>
+						<div class="row">
+        						<div class="input-field col s12">
+          							<input type="text" id="3Code" tabIndex="7">
+          							<label for="3Code">Code</label>
+							</div>
+					      	</div>
+					</td>
+					<td>
+						<div class="row">
+							<div class="credit input-field col s12">
+								<input class="credit" type="text" tabIndex="8" id="3Credits">
+								<label for="3Credits">Credits</label>
+							</div>
+						</div>
+					</td>
+					<td>
+						<div class="row">
+							<div class="grade input-field col s12">
+								<input class="grade" type="text" tabIndex="9" id="3Grade">
+								<label for="3Grade">Grade</label>
+							</div>
+						</div>
+					</td>
+						<td>
+							<div class="row">
+								<div class="row-total input-field col s12">
+								<input class="row-total" type="text" readonly tabIndex="-1">
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr class="calculation visible">
+					<td>4</td>
+					<td>
+						<div class="row">
+        						<div class="input-field col s12">
+          							<input type="text" id="4Code" tabIndex="10">
+          							<label for="4Code">Code</label>
+							</div>
+					      	</div>
+					</td>
+					<td>
+						<div class="row">
+							<div class="credit input-field col s12">
+								<input class="credit" type="text" tabIndex="11" id="4Credits">
+								<label for="4Credits">Credits</label>
+							</div>
+						</div>
+					</td>
+					<td>
+						<div class="row">
+							<div class="grade input-field col s12">
+								<input class="grade" type="text" tabIndex="12" id="4Grade">
+								<label for="4Grade">Grade</label>
+							</div>
+						</div>
+					</td>
+					<td>
+						<div class="row">
+							<div class="row-total input-field col s12">
+								<input class="row-total" type="text" readonly tabIndex="-1">
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr class="calculation visible">
+					<td>5</td>
+					<td>
+						<div class="row">
+        						<div class="input-field col s12">
+          							<input type="text" id="5Code" tabIndex="13">
+          							<label for="5Code">Code</label>
+							</div>
+					      	</div>
+					</td>
+					<td>
+						<div class="row">
+							<div class="credit input-field col s12">
+								<input class="credit" type="text" tabIndex="14" id="5Credits">
+								<label for="5Credits">Credits</label>
+							</div>
+						</div>
+					</td>
+					<td>
+						<div class="row">
+							<div class="grade input-field col s12">
+								<input class="grade" type="text" tabIndex="15" id="5Grade">
+								<label for="5Grade">Grade</label>
+							</div>
+						</div>
+					</td>
+					<td>
+						<div class="row">
+							<div class="row-total input-field col s12">
+								<input class="row-total" type="text" readonly tabIndex="-1">
+							</div>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>					
 		
-<!-- Asynchronous scripts starts-->		
-<script type="text/javascript">		
- [		
-   'https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js',		
-   'js/calculation.js',		
-   'https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js'		
- ].forEach(function(src) {		
-   var script = document.createElement('script');		
-   script.src = src;		
-   script.async = false; 		
-   document.head.appendChild(script);		
- });		
-</script>		
-<!-- Asynchronous scripts ends -->		
+		<div style="margin:0 auto;table-layout:fixed;width:90%;display:table;border-collapse:collapse;margin-top:30px;margin-bottom:100px">	
+			<div id="addRows" style="margin:10px;float:right;">
+				<button class="z-depth-1 tooltipped btn-floating btn-large waves-effect waves-light blue accent-2" id="add_row" data-position="bottom" data-delay="50" data-tooltip="Add Row">
+					<i class="material-icons">add</i>
+				</button>
+			</div>
 
-<!-- Stylesheets begins-->		
- 		<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-blue.min.css" /> 		
- 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">		
- 		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
-<!-- Stylesheet Ends -->
-
-<!-- Google analytics begins -->		
-<script>		
-   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){		
-   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),		
-   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)		
-   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');		
- 		
-   ga('create', 'UA-72866316-1', 'auto');		
-   ga('send', 'pageview');		
- 		
-</script>		
-<!--Google analytics ends-->
-	
-
+			<div id="deleteRows" style="margin:10px;float:right;">
+				<button class="z-depth-1 tooltipped btn-floating btn-large waves-effect waves-light blue accent-2" id="delete_row" data-position="bottom" data-delay="50" data-tooltip="Remove Row">
+					<i class="material-icons">remove</i>
+				</button>
+			</div>
+		</div>
 	</body>
 </html>
