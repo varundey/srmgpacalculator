@@ -2,6 +2,7 @@ $(document).ready(function(){
 
     	$(".button-collapse").sideNav();
         	
+	
 	var numRows = 5, ti = 15;
 
     	function isNumber(n) {
