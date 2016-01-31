@@ -27,6 +27,7 @@ $(document).ready(function(){
         	}); //END .each
         	$("#credit-grand-total").html("Total Credits: "+cr);
         	$("#table-grand-total").html("GPA: "+(tt/cr).toFixed(3));
+            $("#grade-grand-total").html("Total Grades: "+tt);
     	}
 
     	function addRow() {
@@ -46,7 +47,7 @@ $(document).ready(function(){
     	}
 
     	$(function() {
-        	$("#gpa").on("click", ".calculation", recalc);
+        	$("#gpa").on("keyup", ".calculation", recalc);
         	$("#gpa").on("keyup blur", ".form-control", recalc);
         	$("#gpa").on("keyup", ".grade:last", function() { addRow(); } );
         	$("#add_row").on("click", function() { addRow() });
