@@ -39,6 +39,7 @@ $(document).ready(function(){
     	function delRow() {
         	if (numRows > 1) {
         		$("#gpatable").find("tr").last().remove();
+			componentHandler.upgradeDom();
 	        	numRows--;
             		recalc();
         	}
