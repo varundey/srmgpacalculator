@@ -2,6 +2,7 @@ $(document).ready(function(){
 
     	$(".button-collapse").sideNav();
         	
+	
 	var numRows = 5, ti = 15;
 
     	function isNumber(n) {
@@ -12,12 +13,12 @@ $(document).ready(function(){
         	var cr = 0, gr = 0, tt = 0;
         	$("#gpa").find('tr').each(function() {
             		var l = $(this).find('input.credit').val();
-		        var w = $(this).find('input.grade').val();
-            		if (w == "S" || w == 's' || w == '10') { w = 10; }
-            		if (w == "A" || w == 'a' || w == '9') { w = 9; }
-            		if (w == "B" || w == 'b' || w == '8') { w = 8; }
-            		if (w == "C" || w == 'c' || w == '7') { w = 7; }
-            		if (w == "D" || w == 'd' || w == '6') { w = 6; }
+    		        var w = $(this).find('input.grade').val();
+            		if (w == 's' || w=='S' || w=='10') {w = 10; }
+            		if (w == 'a' || w=='A' || w=='9')  {w = 9; }
+            		if (w == 'b' || w=='B' || w=='8')  {w = 8; }
+            		if (w == 'c' || w=='C' || w=='7')  {w = 7; }
+            		if (w == 'd' || w=='D' || w=='5')  {w = 5; }
             		var mult = (l * w);
             		$(this).find('input.row-total').val(mult ? mult : "");
             		gr += isNumber(w) ? parseInt(w, 10) : 0;
@@ -26,13 +27,13 @@ $(document).ready(function(){
         	}); //END .each
         	$("#credit-grand-total").html("Total Credits: "+cr);
         	$("#table-grand-total").html("GPA: "+(tt/cr).toFixed(3));
+            $("#grade-grand-total").html("Total Grades: "+tt);
     	}
 
     	function addRow() {
-        	var dom = $("<tr class='calculation visible'><td>"+(numRows+1)+"</td><td><div class='row'><div class='input-field col s12'><input type='text' id='"+(numRows+1)+"Code' tabIndex='"+(ti++)+"'><label for='"+(numRows+1)+"Code'>Code</label></div></div></td><td><div class='row'><div class='credit input-field col s12'><input class='credit' type='text' tabIndex='"+(ti++)+"' id='"+(numRows+1)+"Credits'><label for='"+(numRows+1)+"Credits'>Credits</label></div></div></td><td><div class='row'><div class='grade input-field col s12'><input class='grade' type='text' tabIndex='"+(ti++)+"' id='"+(numRows+1)+"Grade'><label for='"+(numRows+1)+"Grade'>Grade</label></div></div></td><td><div class='row'><div class='row-total input-field col s12'><input class='row-total' type='text' readonly tabIndex='-1'></div></div></td></tr>");
+        	var dom = $("<tr class='calculation visible'><td>"+(numRows+1)+"</td><td><div class='row'><div class='input-field col s12'><input type='text' id='"+(numRows+1)+"Code' tabIndex='"+(ti++)+"'><label for='"+(numRows+1)+"Code'>Code</label></div></div></td><td><div class='row'><div class='credit input-field col s12'><input class='credit' type='text' tabIndex='"+(ti++)+"' id='"+(numRows+1)+"Credits'><label for='"+(numRows+1)+"Credits'>Credits</label></div></div></td><td><div class='row'><div class='grade input-field col s12'><input class='grade' maxlength='1' type='text' tabIndex='"+(ti++)+"' id='"+(numRows+1)+"Grade'><label for='"+(numRows+1)+"Grade'>Grade</label></div></div></td><td><div class='row'><div class='row-total input-field col s12'><input class='row-total' type='text' readonly tabIndex='-1'></div></div></td></tr>");
         	$('#gpatable').append(dom);
         	numRows++;
-		console.log(numRows);
     	}
 
     	function delRow() {
@@ -41,39 +42,31 @@ $(document).ready(function(){
 	        	numRows--;
             		recalc();
         	}
-		console.log(numRows);
     	}
 
     	$(function() {
-        	$("#gpa").on("click", ".calculation", recalc);
+        	$("#gpa").on("keyup", ".calculation", recalc);
         	$("#gpa").on("keyup blur", ".form-control", recalc);
         	$("#gpa").on("keyup", ".grade:last", function() { addRow(); } );
         	$("#add_row").on("click", function() { addRow() });
         	$("#delete_row").on("click", function() { delRow() } );
     	});
 
-	function calculateRow() {
-            	$('.grade').keyup(function() {
-            		var rowtotal = 0;
-           		var $row = $(this).closest("tr");
-            		var credit = $row.find('.credit').val();
-            		var grade = $row.find('.grade').val();
-            		rowtotal = credit * grade;
-            		if (isNaN(rowtotal)) {
-                		$row.find('.row-total').val("Missing an Input");
-            		} else {
-                		$row.find('.row-total').val(rowtotal);
-            		}
-        	});
-    	}
-
      	$("#gpatable").on("keyup",".credit",function(){
-        	var val=$(this).val();
+        	var crval=$(this).val();
                 var invalidChars = /[^0-9]/gi
-                if(invalidChars.test(val)) {
-                	val= val.replace(invalidChars,"");
-                       	$(this).val(val);
+                if(invalidChars.test(crval)) {
+                	crval = crval.replace(invalidChars,"");
+                       	$(this).val(crval);
                 }
     	});
+
+        $("#gpatable").on("keyup",".grade",function(){
+            var grval=$(this).val();
+                var invalidChars = /[^sabcdiuw9875]/ig
+                if(invalidChars.test(grval)) {
+                    grval = grval.replace(invalidChars,"");
+                        $(this).val(grval);
+                }
+        });
 })
-   
