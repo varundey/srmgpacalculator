@@ -1,4 +1,4 @@
-# SRM CGPA Calculator
+# [SRM CGPA Calculator](https://srm-gpa-calculator.herokuapp.com/)
 
 So the end-sem result just came in and you have all your grades and credits in front of your your screen but you, well being you, are just too lazy to pick up a calculator and start multiplying credits and grades and get the final CGPA.
 
