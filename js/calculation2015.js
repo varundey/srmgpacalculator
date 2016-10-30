@@ -41,7 +41,7 @@ $(document).ready(function() {
         a.test(t) && (t = t.replace(a, ""), $(this).val(t))
     }), $("#gpatable").on("keyup", ".grade", function() {
         var t = $(this).val(),
-            a = /(\ba\+)|[oabcdp987654]|(10)/gi;
+            a = /[^oabcdp10987654+]/gi;		//TODO: Make this regex stronger
         a.test(t) && (t = t.replace(a, ""), $(this).val(t))
     })
 });
